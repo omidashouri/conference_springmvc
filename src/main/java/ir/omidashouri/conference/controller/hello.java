@@ -8,15 +8,15 @@ import java.util.Map;
 @Controller("/conference")
 public class hello {
 
-    @GetMapping
+    @GetMapping("/first")
     public String hello(Map<String,Object> model){
         model.put("message","omidashouri");
-        return "index";
+        return "first";
     }
 
-    @GetMapping("/se")
+    @GetMapping("/second")
     public String hello2(Map<String,Object> model){
         model.put("message","omidashouri");
-        return "index2";
+        return "second";
     }
 }
