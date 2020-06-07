@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Map;
 
-@Controller("/conference")
+@Controller
 public class hello {
 
     @GetMapping("/first")

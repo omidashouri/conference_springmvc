@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
     <title>Registration second</title>
 </head>
 <body>
-<h1>Registration</h1>
+<h1>Registration Second</h1>
 
 </body>
 </html>
