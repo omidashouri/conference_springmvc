@@ -2,6 +2,8 @@ package ir.omidashouri.conference.model;
 
 import lombok.*;
 
+import javax.validation.constraints.NotEmpty;
+
 @Getter
 @Setter
 @Builder
@@ -10,5 +12,6 @@ import lombok.*;
 @Data
 public class Registration {
 
+    @NotEmpty
     private String name;
 }
