@@ -1,9 +1,9 @@
 package ir.omidashouri.conference.config;
 
-import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.i18n.LocaleContext;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
@@ -31,9 +31,8 @@ public class Config implements WebMvcConfigurer {
       return bean;
   }
 
-
   @Bean
-  public LocaleResolver localResolver(){
+  public LocaleResolver localeResolver(){
       SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
       sessionLocaleResolver.setDefaultLocale(Locale.US);
       return sessionLocaleResolver;
@@ -41,13 +40,13 @@ public class Config implements WebMvcConfigurer {
 
   @Bean
   public LocaleChangeInterceptor localeChangeInterceptor(){
-        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
-        localeChangeInterceptor.setParamName("lang");
-        return localeChangeInterceptor;
+        LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+        lci.setParamName("lang");
+        return lci;
   }
 
   @Override
-  public void addInterceptorHandlers(InterceptorRegistry interceptorRegistry){
+  public void addInterceptors(InterceptorRegistry interceptorRegistry){
         interceptorRegistry.addInterceptor(localeChangeInterceptor());
   }
 
