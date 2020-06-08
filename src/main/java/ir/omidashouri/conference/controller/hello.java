@@ -19,4 +19,11 @@ public class hello {
         model.put("message","omidashouri");
         return "second";
     }
+
+    @GetMapping("thyme")
+    public String thyme(Map<String,Object> model){
+        model.put("message","Hello Omid Ashouri");
+        return "thyme";
+    }
+
 }
