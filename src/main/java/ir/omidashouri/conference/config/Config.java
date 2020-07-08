@@ -38,7 +38,7 @@ public class Config implements WebMvcConfigurer {
       InternalResourceViewResolver bean = new InternalResourceViewResolver();
       bean.setPrefix("/WEB-INF/pages/");
       bean.setSuffix(".jsp");
-      bean.setOrder(0);
+      bean.setOrder(1);
       return bean;
   }
 
@@ -86,7 +86,7 @@ public class Config implements WebMvcConfigurer {
   public ViewResolver thymeleafResolver(){
       ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
       viewResolver.setTemplateEngine(templateEngine());
-      viewResolver.setOrder(1);
+      viewResolver.setOrder(0);
       return viewResolver;
   }
 
