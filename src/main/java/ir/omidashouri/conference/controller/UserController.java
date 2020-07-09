@@ -49,10 +49,10 @@ public class UserController {
     public ModelAndView openUserWo(){
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("firstName","");
+        modelAndView.addObject("firstName","1212");
         modelAndView.addObject("nameTextBox","omid1");
-        modelAndView.addObject("lastName","");
-        modelAndView.addObject("age","");
+        modelAndView.addObject("lastName","llllllll");
+        modelAndView.addObject("age","38");
         modelAndView.setViewName("userFormWithoutObject");
         return modelAndView;
     }
