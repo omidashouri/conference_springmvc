@@ -1,9 +1,7 @@
 package ir.omidashouri.conference.controller;
 
 import ir.omidashouri.conference.model.User;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class UserController {
+
+    public static final String URL = "http://localhost:8080/conference/postentityreceive";
 
     @GetMapping("/user")
     public User getUser(@RequestParam(value = "firstName", defaultValue = "Omid") String firstName,
@@ -63,7 +63,7 @@ public class UserController {
     )
     public ResponseEntity<?> PostForEntitySend(HttpServletRequest httpServletRequest,
                                                @RequestParam(value = "firstName",required = false) String firstNameForm,
-                                               @RequestParam(value = "nameTextBox",required = false) String firstNameTextBox){
+                                               @RequestParam(value = "lastName",required = false) String firstNameTextBox){
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
@@ -71,13 +71,25 @@ public class UserController {
         MultiValueMap<String, String> request= new LinkedMultiValueMap<String, String>();
         request.add("firstNameForm", firstNameForm);
         request.add("firstNameTextBox", firstNameTextBox);
-
-//        HttpEntity<> entity = new HttpEntity<>(null,map, headers);
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity responseEntity = restTemplate
-                                            .postForEntity( "http://localhost:8080/conference/postentityreceive",
+
+
+//        without entity
+/*        ResponseEntity responseEntity = restTemplate
+                                            .postForEntity( URL,
                                                     request ,
+                                                    String.class);*/
+
+//        with entity
+        HttpEntity<Object> entity = new HttpEntity<>(request, headers);
+        ResponseEntity<?> responseEntity = restTemplate
+                                            .exchange(URL,
+                                                    HttpMethod.POST,
+                                                    entity,
                                                     String.class);
+
+
+
         return responseEntity;
     }
 
@@ -86,7 +98,7 @@ public class UserController {
                                            @RequestParam("firstNameTextBox") String firstNameTextBox) {
 
 
-        System.out.println("firstNameTextBox: "+firstNameTextBox);
+        System.out.println("firstNameFormBox: "+firstNameForm);
         System.out.println("firstNameTextBox: "+firstNameTextBox);
     }
 }
